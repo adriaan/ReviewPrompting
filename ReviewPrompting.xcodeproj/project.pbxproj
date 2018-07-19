@@ -10,6 +10,8 @@
 		633AD0DD21001A0200FBD10C /* ReviewPrompting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD0D321001A0200FBD10C /* ReviewPrompting.framework */; };
 		633AD0E221001A0200FBD10C /* ReviewPromptingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD0E121001A0200FBD10C /* ReviewPromptingTests.swift */; };
 		633AD0E421001A0200FBD10C /* ReviewPrompting.h in Headers */ = {isa = PBXBuildFile; fileRef = 633AD0D621001A0200FBD10C /* ReviewPrompting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		633AD13F21004F8900FBD10C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD13E21004F8900FBD10C /* Nimble.framework */; };
+		633AD14121004F9000FBD10C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD14021004F9000FBD10C /* Quick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		633AD0DC21001A0200FBD10C /* ReviewPromptingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReviewPromptingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		633AD0E121001A0200FBD10C /* ReviewPromptingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingTests.swift; sourceTree = "<group>"; };
 		633AD0E321001A0200FBD10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		633AD13E21004F8900FBD10C /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		633AD14021004F9000FBD10C /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633AD14121004F9000FBD10C /* Quick.framework in Frameworks */,
+				633AD13F21004F8900FBD10C /* Nimble.framework in Frameworks */,
 				633AD0DD21001A0200FBD10C /* ReviewPrompting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +62,7 @@
 				633AD0D521001A0200FBD10C /* ReviewPrompting */,
 				633AD0E021001A0200FBD10C /* ReviewPromptingTests */,
 				633AD0D421001A0200FBD10C /* Products */,
+				633AD13D21004F8900FBD10C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +91,15 @@
 				633AD0E321001A0200FBD10C /* Info.plist */,
 			);
 			path = ReviewPromptingTests;
+			sourceTree = "<group>";
+		};
+		633AD13D21004F8900FBD10C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				633AD14021004F9000FBD10C /* Quick.framework */,
+				633AD13E21004F8900FBD10C /* Nimble.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
