@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		633AD0DD21001A0200FBD10C /* ReviewPrompting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD0D321001A0200FBD10C /* ReviewPrompting.framework */; };
-		633AD0E221001A0200FBD10C /* ReviewPromptingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD0E121001A0200FBD10C /* ReviewPromptingTests.swift */; };
 		633AD0E421001A0200FBD10C /* ReviewPrompting.h in Headers */ = {isa = PBXBuildFile; fileRef = 633AD0D621001A0200FBD10C /* ReviewPrompting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		633AD13F21004F8900FBD10C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD13E21004F8900FBD10C /* Nimble.framework */; };
 		633AD14121004F9000FBD10C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD14021004F9000FBD10C /* Quick.framework */; };
+		633AD1432100645800FBD10C /* ReviewPromptingAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD1422100645800FBD10C /* ReviewPromptingAlertPresenter.swift */; };
+		633AD1452100672700FBD10C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633AD1442100672700FBD10C /* StoreKit.framework */; };
+		633AD147210068D200FBD10C /* ReviewPromptiongConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD146210068D200FBD10C /* ReviewPromptiongConfiguration.swift */; };
+		633AD1492100850C00FBD10C /* ReviewPromptingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD1482100850C00FBD10C /* ReviewPromptingCoordinator.swift */; };
+		633AD14B210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14A210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift */; };
+		633AD14D21008ED300FBD10C /* ReviewPromptingCustomParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */; };
+		633AD14F2100961100FBD10C /* ReviewPromptingParameterPersistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,10 +35,16 @@
 		633AD0D621001A0200FBD10C /* ReviewPrompting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewPrompting.h; sourceTree = "<group>"; };
 		633AD0D721001A0200FBD10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633AD0DC21001A0200FBD10C /* ReviewPromptingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReviewPromptingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		633AD0E121001A0200FBD10C /* ReviewPromptingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingTests.swift; sourceTree = "<group>"; };
 		633AD0E321001A0200FBD10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633AD13E21004F8900FBD10C /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		633AD14021004F9000FBD10C /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		633AD1422100645800FBD10C /* ReviewPromptingAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingAlertPresenter.swift; sourceTree = "<group>"; };
+		633AD1442100672700FBD10C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		633AD146210068D200FBD10C /* ReviewPromptiongConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptiongConfiguration.swift; sourceTree = "<group>"; };
+		633AD1482100850C00FBD10C /* ReviewPromptingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCoordinator.swift; sourceTree = "<group>"; };
+		633AD14A210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingDefaultParameters.swift; sourceTree = "<group>"; };
+		633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCustomParameter.swift; sourceTree = "<group>"; };
+		633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingParameterPersistor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633AD1452100672700FBD10C /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +93,12 @@
 			children = (
 				633AD0D621001A0200FBD10C /* ReviewPrompting.h */,
 				633AD0D721001A0200FBD10C /* Info.plist */,
+				633AD1482100850C00FBD10C /* ReviewPromptingCoordinator.swift */,
+				633AD1422100645800FBD10C /* ReviewPromptingAlertPresenter.swift */,
+				633AD146210068D200FBD10C /* ReviewPromptiongConfiguration.swift */,
+				633AD14A210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift */,
+				633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */,
+				633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */,
 			);
 			path = ReviewPrompting;
 			sourceTree = "<group>";
@@ -87,7 +106,6 @@
 		633AD0E021001A0200FBD10C /* ReviewPromptingTests */ = {
 			isa = PBXGroup;
 			children = (
-				633AD0E121001A0200FBD10C /* ReviewPromptingTests.swift */,
 				633AD0E321001A0200FBD10C /* Info.plist */,
 			);
 			path = ReviewPromptingTests;
@@ -96,6 +114,7 @@
 		633AD13D21004F8900FBD10C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				633AD1442100672700FBD10C /* StoreKit.framework */,
 				633AD14021004F9000FBD10C /* Quick.framework */,
 				633AD13E21004F8900FBD10C /* Nimble.framework */,
 			);
@@ -164,6 +183,7 @@
 				TargetAttributes = {
 					633AD0D221001A0200FBD10C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					633AD0DB21001A0200FBD10C = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -210,6 +230,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633AD14B210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift in Sources */,
+				633AD14D21008ED300FBD10C /* ReviewPromptingCustomParameter.swift in Sources */,
+				633AD14F2100961100FBD10C /* ReviewPromptingParameterPersistor.swift in Sources */,
+				633AD1492100850C00FBD10C /* ReviewPromptingCoordinator.swift in Sources */,
+				633AD1432100645800FBD10C /* ReviewPromptingAlertPresenter.swift in Sources */,
+				633AD147210068D200FBD10C /* ReviewPromptiongConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				633AD0E221001A0200FBD10C /* ReviewPromptingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +380,7 @@
 		633AD0E821001A0200FBD10C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -372,6 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.fieldapps.ReviewPrompting;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -380,6 +407,7 @@
 		633AD0E921001A0200FBD10C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -405,6 +433,7 @@
 		633AD0EB21001A0200FBD10C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83GN3MK5U3;
 				INFOPLIST_FILE = ReviewPromptingTests/Info.plist;
@@ -423,6 +452,7 @@
 		633AD0EC21001A0200FBD10C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83GN3MK5U3;
 				INFOPLIST_FILE = ReviewPromptingTests/Info.plist;
