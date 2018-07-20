@@ -18,6 +18,7 @@
 		633AD14B210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14A210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift */; };
 		633AD14D21008ED300FBD10C /* ReviewPromptingCustomParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */; };
 		633AD14F2100961100FBD10C /* ReviewPromptingParameterPersistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */; };
+		63645E3F21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		633AD14A210088CF00FBD10C /* ReviewPromptingDefaultParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingDefaultParameters.swift; sourceTree = "<group>"; };
 		633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCustomParameter.swift; sourceTree = "<group>"; };
 		633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingParameterPersistor.swift; sourceTree = "<group>"; };
+		63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCoordinatorSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				633AD0E321001A0200FBD10C /* Info.plist */,
+				63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */,
 			);
 			path = ReviewPromptingTests;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 					};
 					633AD0DB21001A0200FBD10C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -243,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63645E3F21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +439,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83GN3MK5U3;
 				INFOPLIST_FILE = ReviewPromptingTests/Info.plist;
@@ -444,6 +450,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.fieldapps.ReviewPromptingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,6 +460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83GN3MK5U3;
 				INFOPLIST_FILE = ReviewPromptingTests/Info.plist;

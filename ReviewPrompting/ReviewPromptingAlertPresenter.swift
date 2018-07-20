@@ -16,7 +16,13 @@ protocol ReviewPromptingAlertPresenterDelegate: class {
     func reviewPromptingAlertPresenterDidPresentReviewPrompt(presenter: ReviewPromptingAlertPresenter)
 }
 
-class ReviewPromptingAlertPresenter {
+protocol ReviewPromptingAlertPresenting: class {
+
+    var delegate: ReviewPromptingAlertPresenterDelegate? { get set }
+    func presentOn(viewController: UIViewController, withConfiguration configuration: ReviewPromptingConfiguration)
+}
+
+class ReviewPromptingAlertPresenter: ReviewPromptingAlertPresenting {
 
     weak var delegate: ReviewPromptingAlertPresenterDelegate?
 

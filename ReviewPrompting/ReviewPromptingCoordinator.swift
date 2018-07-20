@@ -21,7 +21,7 @@ class ReviewPromptingCoordinator {
     private let customParameters: [ReviewPromptingCustomParameter]
     private let configuration: ReviewPromptingConfiguration
     private let persistor: ReviewPromptingParameterPersistor
-    private let presenter: ReviewPromptingAlertPresenter
+    private let presenter: ReviewPromptingAlertPresenting
 
     weak var delegate: ReviewPromptingCoordinatorDelegate?
 
@@ -29,7 +29,7 @@ class ReviewPromptingCoordinator {
         configuration: ReviewPromptingConfiguration,
         customParameters: [ReviewPromptingCustomParameter],
         persistor: ReviewPromptingParameterPersistor = ReviewPromptingParameterPersistor(),
-        presenter: ReviewPromptingAlertPresenter = ReviewPromptingAlertPresenter()
+        presenter: ReviewPromptingAlertPresenting = ReviewPromptingAlertPresenter()
         ) {
         self.configuration = configuration
         self.customParameters = customParameters
@@ -67,9 +67,9 @@ class ReviewPromptingCoordinator {
     private func userQualifies() -> Bool {
         guard #available(iOS 10.3, *) else { return false }
 
-        guard let lastCrashDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue), lastCrashDate.timeIntervalSinceNow < TimeInterval(-24 * 3600 * configuration.minDaysAfterCrash) else { return false }
+        if let lastCrashDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue), lastCrashDate.timeIntervalSinceNow > TimeInterval(-24 * 3600 * configuration.minDaysAfterCrash) { return false }
 
-        guard  persistor.valueFor(parameter: ReviewPromptingDefaultParameters.numSessions.rawValue) >= configuration.minSessions else { return false }
+        guard persistor.valueFor(parameter: ReviewPromptingDefaultParameters.numSessions.rawValue) >= configuration.minSessions else { return false }
 
         guard let firstLaunchDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue), firstLaunchDate.timeIntervalSinceNow < TimeInterval(-24 * 3600 * configuration.minDaysAfterFirstLaunch) else { return false }
 
