@@ -19,6 +19,7 @@
 		633AD14D21008ED300FBD10C /* ReviewPromptingCustomParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */; };
 		633AD14F2100961100FBD10C /* ReviewPromptingParameterPersistor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */; };
 		63645E3F21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */; };
+		63645E41210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63645E40210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		633AD14C21008ED300FBD10C /* ReviewPromptingCustomParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCustomParameter.swift; sourceTree = "<group>"; };
 		633AD14E2100961100FBD10C /* ReviewPromptingParameterPersistor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingParameterPersistor.swift; sourceTree = "<group>"; };
 		63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCoordinatorSpec.swift; sourceTree = "<group>"; };
+		63645E40210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingParameterPersistorSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				633AD0E321001A0200FBD10C /* Info.plist */,
 				63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */,
+				63645E40210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift */,
 			);
 			path = ReviewPromptingTests;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63645E3F21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift in Sources */,
+				63645E41210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
