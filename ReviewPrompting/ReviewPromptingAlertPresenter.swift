@@ -66,7 +66,11 @@ class ReviewPromptingAlertPresenter: ReviewPromptingAlertPresenting {
     }
 
     private func presentReviewPrompt() {
-        SKStoreReviewController.requestReview()
-        delegate?.reviewPromptingAlertPresenterDidPresentReviewPrompt(presenter: self)
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+            delegate?.reviewPromptingAlertPresenterDidPresentReviewPrompt(presenter: self)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
