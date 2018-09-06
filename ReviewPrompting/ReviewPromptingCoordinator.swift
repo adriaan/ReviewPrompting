@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ReviewPromptingCoordinatorDelegate: class {
+public protocol ReviewPromptingCoordinatorDelegate: class {
 
     func reviewPromptingCoordinatorDidPresentTriage(coordinator: ReviewPromptingCoordinator)
     func reviewPromptingCoordinatorDidRespondPositivelyToTriage(coordinator: ReviewPromptingCoordinator)
@@ -16,7 +16,7 @@ protocol ReviewPromptingCoordinatorDelegate: class {
     func reviewPromptingCoordinatorDidPresentReviewPrompt(coordinator: ReviewPromptingCoordinator)
 }
 
-class ReviewPromptingCoordinator {
+public class ReviewPromptingCoordinator {
 
     private let customParameters: [ReviewPromptingCustomParameter]
     private let configuration: ReviewPromptingConfiguration
@@ -40,21 +40,21 @@ class ReviewPromptingCoordinator {
         NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidFinishLaunchingNotification), name: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil)
     }
 
-    func appDidCrash() {
+    public func appDidCrash() {
         persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue)
     }
 
-    func promptIfUserQualifiesOn(viewController: UIViewController) {
+    public func promptIfUserQualifiesOn(viewController: UIViewController) {
         guard userQualifies() else { return }
         presenter.presentOn(viewController: viewController, withConfiguration: configuration)
     }
 
-    func incrementCustomParameterWith(name: String) {
+    public func incrementCustomParameterWith(name: String) {
         guard customParameterIsRegisteredFor(name: name) else { return }
         persistor.increment(parameter: name)
     }
 
-    func setValue(_ value: Int, forCustomParameterWithName name: String) {
+    public func setValue(_ value: Int, forCustomParameterWithName name: String) {
         guard customParameterIsRegisteredFor(name: name) else { return }
         persistor.set(value: value, forParameter: name)
     }
