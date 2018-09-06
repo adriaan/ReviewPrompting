@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ReviewPromptingConfiguration {
+public struct ReviewPromptingConfiguration {
 
     let appName: String
     let shouldTriage: Bool

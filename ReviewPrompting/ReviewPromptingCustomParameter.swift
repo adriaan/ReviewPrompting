@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ReviewPromptingCustomParameter {
+public struct ReviewPromptingCustomParameter {
 
     let name: String
     let threshold: Int
