@@ -10,12 +10,12 @@ import Foundation
 
 public struct ReviewPromptingConfiguration {
 
-    let appName: String
-    let shouldTriage: Bool
+    public let appName: String
+    public let shouldTriage: Bool
 
-    let minDaysAfterCrash: Int
-    let minDaysAfterNegativeTriage: Int
-    let minDaysAfterPrompted: Int
-    let minDaysAfterFirstLaunch: Int
-    let minSessions: Int
+    public let minDaysAfterCrash: Int
+    public let minDaysAfterNegativeTriage: Int
+    public let minDaysAfterPrompted: Int
+    public let minDaysAfterFirstLaunch: Int
+    public let minSessions: Int
 }
