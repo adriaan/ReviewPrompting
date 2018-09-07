@@ -23,7 +23,7 @@ public class ReviewPromptingCoordinator {
     private let persistor: ReviewPromptingParameterPersistor
     private let presenter: ReviewPromptingAlertPresenting
 
-    weak var delegate: ReviewPromptingCoordinatorDelegate?
+    public weak var delegate: ReviewPromptingCoordinatorDelegate?
 
     public init(
         configuration: ReviewPromptingConfiguration,
