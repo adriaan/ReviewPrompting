@@ -25,7 +25,7 @@ public class ReviewPromptingCoordinator {
 
     weak var delegate: ReviewPromptingCoordinatorDelegate?
 
-    init(
+    public init(
         configuration: ReviewPromptingConfiguration,
         customParameters: [ReviewPromptingCustomParameter],
         persistor: ReviewPromptingParameterPersistor = ReviewPromptingParameterPersistor(),
@@ -97,20 +97,20 @@ public class ReviewPromptingCoordinator {
 
 extension ReviewPromptingCoordinator: ReviewPromptingAlertPresenterDelegate {
 
-    func reviewPromptingAlertPresenterDidPresentTriage(presenter: ReviewPromptingAlertPresenter) {
+    public func reviewPromptingAlertPresenterDidPresentTriage(presenter: ReviewPromptingAlertPresenter) {
         delegate?.reviewPromptingCoordinatorDidPresentTriage(coordinator: self)
     }
 
-    func reviewPromptingAlertPresenterUserDidRespondPositivelyToTriage(presenter: ReviewPromptingAlertPresenter) {
+    public func reviewPromptingAlertPresenterUserDidRespondPositivelyToTriage(presenter: ReviewPromptingAlertPresenter) {
         delegate?.reviewPromptingCoordinatorDidRespondPositivelyToTriage(coordinator: self)
     }
 
-    func reviewPromptingAlertPresenterUserDidRespondNegativelyToTriage(presenter: ReviewPromptingAlertPresenter) {
+    public func reviewPromptingAlertPresenterUserDidRespondNegativelyToTriage(presenter: ReviewPromptingAlertPresenter) {
         persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.lastNegativeTriagedDate.rawValue)
         delegate?.reviewPromptingCoordinatorUserDidRespondNegativelyToTriage(coordinator: self)
     }
 
-    func reviewPromptingAlertPresenterDidPresentReviewPrompt(presenter: ReviewPromptingAlertPresenter) {
+    public func reviewPromptingAlertPresenterDidPresentReviewPrompt(presenter: ReviewPromptingAlertPresenter) {
         persistor.setLastPromptedDate(date: Date())
         delegate?.reviewPromptingCoordinatorDidPresentReviewPrompt(coordinator: self)
     }

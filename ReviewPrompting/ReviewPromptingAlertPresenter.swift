@@ -8,7 +8,7 @@
 
 import StoreKit
 
-protocol ReviewPromptingAlertPresenterDelegate: class {
+public protocol ReviewPromptingAlertPresenterDelegate: class {
 
     func reviewPromptingAlertPresenterDidPresentTriage(presenter: ReviewPromptingAlertPresenter)
     func reviewPromptingAlertPresenterUserDidRespondPositivelyToTriage(presenter: ReviewPromptingAlertPresenter)
@@ -16,17 +16,21 @@ protocol ReviewPromptingAlertPresenterDelegate: class {
     func reviewPromptingAlertPresenterDidPresentReviewPrompt(presenter: ReviewPromptingAlertPresenter)
 }
 
-protocol ReviewPromptingAlertPresenting: class {
+public protocol ReviewPromptingAlertPresenting: class {
 
     var delegate: ReviewPromptingAlertPresenterDelegate? { get set }
     func presentOn(viewController: UIViewController, withConfiguration configuration: ReviewPromptingConfiguration)
 }
 
-class ReviewPromptingAlertPresenter: ReviewPromptingAlertPresenting {
+public class ReviewPromptingAlertPresenter: ReviewPromptingAlertPresenting {
 
-    weak var delegate: ReviewPromptingAlertPresenterDelegate?
+    public weak var delegate: ReviewPromptingAlertPresenterDelegate?
 
-    func presentOn(viewController: UIViewController, withConfiguration configuration: ReviewPromptingConfiguration) {
+    public init() {
+        
+    }
+
+    public func presentOn(viewController: UIViewController, withConfiguration configuration: ReviewPromptingConfiguration) {
         guard #available(iOS 10.3, *) else { return }
         if configuration.shouldTriage {
             presentTriageOn(viewController: viewController, withConfiguration: configuration)

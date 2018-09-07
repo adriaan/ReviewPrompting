@@ -12,4 +12,9 @@ public struct ReviewPromptingCustomParameter {
 
     let name: String
     let threshold: Int
+
+    public init(name: String, threshold: Int) {
+        self.name = name
+        self.threshold = threshold
+    }
 }
