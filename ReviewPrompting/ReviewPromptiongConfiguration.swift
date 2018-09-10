@@ -12,6 +12,7 @@ public struct ReviewPromptingConfiguration {
 
     let appName: String
     let shouldTriage: Bool
+    let isPromptingEnabled: Bool
 
     let minDaysAfterCrash: Int
     let minDaysAfterNegativeTriage: Int
@@ -22,6 +23,7 @@ public struct ReviewPromptingConfiguration {
     public init(
         appName: String,
         shouldTriage: Bool,
+        isPromptingEnabled: Bool,
         minDaysAfterCrash: Int,
         minDaysAfterNegativeTriage: Int,
         minDaysAfterPrompted: Int,
@@ -30,6 +32,7 @@ public struct ReviewPromptingConfiguration {
         ) {
         self.appName = appName
         self.shouldTriage = shouldTriage
+        self.isPromptingEnabled = isPromptingEnabled
         self.minDaysAfterCrash = minDaysAfterCrash
         self.minDaysAfterNegativeTriage = minDaysAfterNegativeTriage
         self.minDaysAfterPrompted = minDaysAfterPrompted

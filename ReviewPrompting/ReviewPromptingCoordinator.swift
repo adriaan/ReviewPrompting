@@ -18,8 +18,8 @@ public protocol ReviewPromptingCoordinatorDelegate: class {
 
 public class ReviewPromptingCoordinator {
 
-    private let customParameters: [ReviewPromptingCustomParameter]
-    private let configuration: ReviewPromptingConfiguration
+    private var customParameters: [ReviewPromptingCustomParameter]
+    private var configuration: ReviewPromptingConfiguration
     private let persistor: ReviewPromptingParameterPersistor
     private let presenter: ReviewPromptingAlertPresenting
 
@@ -40,12 +40,17 @@ public class ReviewPromptingCoordinator {
         NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidFinishLaunchingNotification), name: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil)
     }
 
+    public func updateWith(configuration: ReviewPromptingConfiguration, customParameters: [ReviewPromptingCustomParameter]) {
+        self.configuration = configuration
+        self.customParameters = customParameters
+    }
+
     public func appDidCrash() {
         persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue)
     }
 
     public func promptIfUserQualifiesOn(viewController: UIViewController) {
-        guard userQualifies() else { return }
+        guard configuration.isPromptingEnabled, userQualifies() else { return }
         presenter.presentOn(viewController: viewController, withConfiguration: configuration)
     }
 
