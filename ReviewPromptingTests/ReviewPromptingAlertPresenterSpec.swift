@@ -29,7 +29,7 @@ class ReviewPromptingAlertPresenterSpec: QuickSpec {
                         window.isHidden = false
 
                         let presenter = ReviewPromptingAlertPresenter()
-                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
                         presenter.presentOn(viewController: viewController, withConfiguration: configuration)
 
                         expect(viewController.presentedViewController).toEventually(beAKindOf(UIAlertController.self), timeout: 1)

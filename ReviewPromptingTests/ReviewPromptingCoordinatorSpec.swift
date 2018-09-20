@@ -34,7 +34,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
                 it("persists the crash date") {
 
-                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
                     let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: presenter)
 
                     coordinator.appDidCrash()
@@ -49,7 +49,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
                     it("persists the incremented parameter") {
 
-                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
+                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
                         let parameter = ReviewPromptingCustomParameter(name: "parameter", threshold: 10)
                         let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [parameter], persistor: persistor, presenter: presenter)
 
@@ -65,7 +65,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
                     it("does not increment the parameter") {
 
-                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
+                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
                         let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: presenter)
 
                         coordinator.incrementCustomParameterWith(name: "parameter")
@@ -80,7 +80,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
                     it("persists the value for the parameter") {
 
-                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
+                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
                         let parameter = ReviewPromptingCustomParameter(name: "parameter", threshold: 10)
                         let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [parameter], persistor: persistor, presenter: presenter)
 
@@ -93,7 +93,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
                     it("does not persist the value for the parameter") {
 
-                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
+                        let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 5, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 20, minDaysAfterFirstLaunch: 5, minSessions: 5)
                         let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: presenter)
 
                         coordinator.setValue(100, forCustomParameterWithName: "parameter")
@@ -107,7 +107,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
                 it("does not call presenter if user doesn't qualify") {
 
                     let fakePresenter = FakeReviewPromptingPresenter()
-                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 10, minSessions: 10)
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 10, minSessions: 10)
                     let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
 
                     coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
@@ -117,7 +117,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
                 it("prompts if user qualifies") {
 
                     let fakePresenter = FakeReviewPromptingPresenter()
-                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
                     let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
                     // Force persist a first launch date.
                     // This is a hack as normally this would be triggered through the launch notification

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Field Apps. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public protocol ReviewPromptingCoordinatorDelegate: class {
 
@@ -24,6 +24,7 @@ public class ReviewPromptingCoordinator {
     private let presenter: ReviewPromptingAlertPresenting
 
     public weak var delegate: ReviewPromptingCoordinatorDelegate?
+    public var forceUserQualificationForTesting: Bool = false
 
     public init(
         configuration: ReviewPromptingConfiguration,
@@ -71,6 +72,8 @@ public class ReviewPromptingCoordinator {
 
     private func userQualifies() -> Bool {
         guard #available(iOS 10.3, *) else { return false }
+
+        guard forceUserQualificationForTesting == false else { return true }
 
         if let lastCrashDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue), lastCrashDate.timeIntervalSinceNow > TimeInterval(-24 * 3600 * configuration.minDaysAfterCrash) { return false }
 
