@@ -38,7 +38,7 @@ public class ReviewPromptingCoordinator {
         self.presenter = presenter
         self.presenter.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidFinishLaunchingNotification), name: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidFinishLaunchingNotification), name: UIApplication.didFinishLaunchingNotification, object: nil)
     }
 
     public func updateWith(configuration: ReviewPromptingConfiguration, customParameters: [ReviewPromptingCustomParameter]) {
