@@ -1,12 +1,12 @@
 # ReviewPromping
 
 This is a library to help you easily and thoughtfully prompt users of your app to leave a review on the App Store, by asking the right user at the right time. It uses the native `SKStoreReviewController.requestReview()` method introduced in iOS 10.3.
-The ideas behind this library (as well as a couple of case studies)  can be found [here](https://www.youtube.com/watch?v=9DI3qnbqa8o&list=PLRdg1MF7wOwyjzRyDMqNXkFhwV7tmoCki&index=13)
+The ideas behind this library (as well as a couple of case studies)  can be found [here](https://www.youtube.com/watch?v=9DI3qnbqa8o&list=PLRdg1MF7wOwyjzRyDMqNXkFhwV7tmoCki&index=13).
 
 ## What it does
 
 It tracks the parameters that determine whether a user qualifies to be asked for a review
-It presents the review prompting UI when asked to *if* the user qualifies
+It presents the review prompting UI when asked to *if* the user qualifies.
 
 ## Usage
 
@@ -24,7 +24,7 @@ let configuration = ReviewPromptingConfiguration(
     minDaysAfterFirstLaunch: 5, 
     minSessions: 5
 )
-let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: presenter)
+let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [])
 ```
 ### Configuration
 
