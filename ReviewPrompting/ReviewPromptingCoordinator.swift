@@ -28,7 +28,7 @@ public class ReviewPromptingCoordinator {
 
     public init(
         configuration: ReviewPromptingConfiguration,
-        customParameters: [ReviewPromptingCustomParameter],
+        customParameters: [ReviewPromptingCustomParameter] = [],
         persistor: ReviewPromptingParameterPersistor = ReviewPromptingParameterPersistor(),
         presenter: ReviewPromptingAlertPresenting = ReviewPromptingAlertPresenter()
         ) {
@@ -72,22 +72,51 @@ public class ReviewPromptingCoordinator {
 
     private func userQualifies() -> Bool {
         guard #available(iOS 10.3, *) else { return false }
-
         guard forceUserQualificationForTesting == false else { return true }
 
-        if let lastCrashDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue), lastCrashDate.timeIntervalSinceNow > TimeInterval(-24 * 3600 * configuration.minDaysAfterCrash) { return false }
+        guard userQualifiesForDaysAfterFirstLaunch() else { return false }
+        guard userQualifiesForNumSessions() else { return false }
+        guard userQualifiesForLastCrashDate() else { return false }
+        guard userQualifiesForNumberOfPromptsPerYear() else { return false }
+        guard userQualifiesForDaysSinceLastPrompted() else { return false }
+        guard userQualifiesForDaysSinceNegativeTriage() else { return false }
+        guard userQualifiesForCustomParameters() else { return false }
+        return true
+    }
 
-        guard persistor.valueFor(parameter: ReviewPromptingDefaultParameters.numSessions.rawValue) >= configuration.minSessions else { return false }
-
+    private func userQualifiesForDaysAfterFirstLaunch() -> Bool {
         guard let firstLaunchDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue), firstLaunchDate.timeIntervalSinceNow < TimeInterval(-24 * 3600 * configuration.minDaysAfterFirstLaunch) else { return false }
+        return true
+    }
 
+    private func userQualifiesForNumSessions() -> Bool {
+        guard persistor.valueFor(parameter: ReviewPromptingDefaultParameters.numSessions.rawValue) >= configuration.minSessions else { return false }
+        return true
+    }
+
+    private func userQualifiesForLastCrashDate() -> Bool {
+        if let lastCrashDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.lastCrashDate.rawValue), lastCrashDate.timeIntervalSinceNow > TimeInterval(-24 * 3600 * configuration.minDaysAfterCrash) { return false }
+        return true
+    }
+
+    private func userQualifiesForNumberOfPromptsPerYear() -> Bool {
         let lastPromptedDates = persistor.promptedDates()
         if lastPromptedDates.count == 3, let firstPromptedDate = lastPromptedDates.first, firstPromptedDate.timeIntervalSinceNow > TimeInterval(-365 * 24 * 3600) { return false }
+        return true
+    }
 
+    private func userQualifiesForDaysSinceLastPrompted() -> Bool {
+        let lastPromptedDates = persistor.promptedDates()
         if let mostRecentPromptedDate = lastPromptedDates.last, mostRecentPromptedDate.timeIntervalSinceNow > TimeInterval( -24 * 3600 * configuration.minDaysAfterPrompted) { return false }
+        return true
+    }
 
+    private func userQualifiesForDaysSinceNegativeTriage() -> Bool {
         if let lastNegativeTriageDate = persistor.dateFor(parameter: ReviewPromptingDefaultParameters.lastNegativeTriagedDate.rawValue), lastNegativeTriageDate.timeIntervalSinceNow > TimeInterval( -24 * 3600 * configuration.minDaysAfterNegativeTriage) { return false }
+        return true
+    }
 
+    private func userQualifiesForCustomParameters() -> Bool {
         return customParameters.reduce(true) { (intermediate, customParameter) -> Bool in
             guard intermediate == true else { return false }
             let currentValue = persistor.valueFor(parameter: customParameter.name)
@@ -97,9 +126,8 @@ public class ReviewPromptingCoordinator {
 
     @objc private func handleApplicationDidFinishLaunchingNotification() {
         persistor.increment(parameter: ReviewPromptingDefaultParameters.numSessions.rawValue)
-        if persistor.dateFor(parameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue) == nil {
-            persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue)
-        }
+        guard persistor.dateFor(parameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue) == nil else { return }
+        persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue)
     }
 }
 

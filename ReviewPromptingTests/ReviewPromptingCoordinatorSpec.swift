@@ -120,7 +120,7 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
                     let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
                     let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
                     // Force persist a first launch date.
-                    // This is a hack as normally this would be triggered through the launch notification
+                    // This is a workaround as normally this would be triggered in response to the app launch notification
                     persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue)
 
                     coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
