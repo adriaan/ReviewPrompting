@@ -104,11 +104,90 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
             describe("promptIfUserQualifies") {
 
-                it("does not call presenter if user doesn't qualify") {
+                var fakePresenter: FakeReviewPromptingPresenter!
+                beforeEach {
+                    fakePresenter = FakeReviewPromptingPresenter()
+                }
 
-                    let fakePresenter = FakeReviewPromptingPresenter()
-                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 10, minSessions: 10)
+                it("does not call presenter if user doesn't qualify for minDaysAfterFirstLaunch") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 10, minSessions: 0)
                     let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
+
+                it("does not call presenter if user doesn't qualify for minSessions") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 10)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
+
+                it("does not call presenter if user doesn't qualify for minDaysAfterPrompted") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 10, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+                    persistor.setLastPromptedDate(date: Date())
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
+
+                it("does not call presenter if user has been prompted 3 times in the past year") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+                    persistor.setLastPromptedDate(date: Date())
+                    persistor.setLastPromptedDate(date: Date())
+                    persistor.setLastPromptedDate(date: Date())
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
+
+                it("does not call presenter if user doesn't qualify for minDaysAfterNegativeTriage") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+                    persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.lastNegativeTriagedDate.rawValue)
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
+
+                it("does not call presenter if user doesn't qualify for minDaysAfterCrash") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 10, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+                    coordinator.appDidCrash()
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
+
+                it("does not call presenter if user doesn't qualify for a custom parameter") {
+
+                    let customParameter = ReviewPromptingCustomParameter(name: "tappedButton", threshold: 5)
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 10, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [customParameter], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
 
                     coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
                     expect(fakePresenter.presentOnCalled) == false
@@ -116,19 +195,33 @@ class ReviewPromptingCoordinatorSpec: QuickSpec {
 
                 it("prompts if user qualifies") {
 
-                    let fakePresenter = FakeReviewPromptingPresenter()
                     let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: true, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
                     let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
                     // Force persist a first launch date.
-                    // This is a workaround as normally this would be triggered in response to the app launch notification
-                    persistor.set(date: Date(), forParameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue)
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
 
                     coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
                     expect(fakePresenter.presentOnCalled) == true
                 }
+
+                it("does not prompt if user qualifies but prompting is disabled") {
+
+                    let configuration = ReviewPromptingConfiguration(appName: "app", shouldTriage: true, isPromptingEnabled: false, minDaysAfterCrash: 0, minDaysAfterNegativeTriage: 0, minDaysAfterPrompted: 0, minDaysAfterFirstLaunch: 0, minSessions: 0)
+                    let coordinator = ReviewPromptingCoordinator(configuration: configuration, customParameters: [], persistor: persistor, presenter: fakePresenter)
+                    // Force persist a first launch date.
+                    forcePersistFirstLaunchDate(Date(), persistor: persistor)
+
+                    coordinator.promptIfUserQualifiesOn(viewController: UIViewController())
+                    expect(fakePresenter.presentOnCalled) == false
+                }
             }
         }
     }
+}
+
+func forcePersistFirstLaunchDate(_ date: Date, persistor: ReviewPromptingParameterPersistor) {
+    // This is a workaround as normally this would be triggered in response to the app launch notification
+    persistor.set(date: date, forParameter: ReviewPromptingDefaultParameters.firstLaunchDate.rawValue)
 }
 
 class FakeReviewPromptingPresenter: ReviewPromptingAlertPresenting {
