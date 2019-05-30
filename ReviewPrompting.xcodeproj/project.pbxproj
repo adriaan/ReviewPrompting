@@ -21,6 +21,7 @@
 		63645E3F21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */; };
 		63645E41210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63645E40210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift */; };
 		63645E432101C2A1001DFC8B /* ReviewPromptingAlertPresenterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63645E422101C2A1001DFC8B /* ReviewPromptingAlertPresenterSpec.swift */; };
+		63AB21BC229FD7F700B524E3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 63AB21BB229FD7F700B524E3 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		63645E3E21015C70001DFC8B /* ReviewPromptingCoordinatorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingCoordinatorSpec.swift; sourceTree = "<group>"; };
 		63645E40210193B6001DFC8B /* ReviewPromptingParameterPersistorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingParameterPersistorSpec.swift; sourceTree = "<group>"; };
 		63645E422101C2A1001DFC8B /* ReviewPromptingAlertPresenterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptingAlertPresenterSpec.swift; sourceTree = "<group>"; };
+		63AB21BB229FD7F700B524E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		633AD0C921001A0200FBD10C = {
 			isa = PBXGroup;
 			children = (
+				63AB21BB229FD7F700B524E3 /* README.md */,
 				633AD0D521001A0200FBD10C /* ReviewPrompting */,
 				633AD0E021001A0200FBD10C /* ReviewPromptingTests */,
 				633AD0D421001A0200FBD10C /* Products */,
@@ -223,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63AB21BC229FD7F700B524E3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
